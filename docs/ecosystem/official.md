@@ -24,7 +24,7 @@ It easily integrates some localization lint features to your Vue.js Application.
 
 [@intlify/cli](https://github.com/intlify/cli) is CLI Tooling for i18n development.
 
-You can pre-compile i18n resources (`json5?`, `ya?ml`) with `intlify compile` command.
+You can pre-compile i18n resources (`JSON5`, `YAML`) with `intlify compile` command.
 
 ## Extensions
 

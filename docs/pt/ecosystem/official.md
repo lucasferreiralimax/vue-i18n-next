@@ -1,33 +1,33 @@
-# Official tooling
+# Ferramentas oficiais
 
-## Vue CLI Plugin
+## Plugin para Vue CLI
 
-[vue-cli-plugin-i18n](https://github.com/kazupon/vue-cli-plugin-i18n) is officially provided as the Vue CLI Plugin.
+[vue-cli-plugin-i18n](https://github.com/kazupon/vue-cli-plugin-i18n) é o nosso plugin oficial para o Vue CLI.
 
-With this plugin, you can setup the i18n environment for the Vue application, and support the i18n development environment.
+Com este plugin, você consegue configurar um ambiente i18n para todo o seu aplicativo Vue e todo suporte ao ambiente de desenvolvimento i18n.
 
 ## Nuxt Module
 
-[nuxt-i18n](https://github.com/nuxt-community/nuxt-i18n/) is corresponding Nuxt.js module.
+[nuxt-i18n](https://github.com/nuxt-community/nuxt-i18n/) é o módulo correspondente para Nuxt.js.
 
-:::warning NOTICE
-Still not supported.
+:::warning AVISO
+Ainda não é compatível.
 :::
 
-## ESLint Plugin
+### Plugin para ESLint
 
-[eslint-plugin-vue-i18n](https://intlify.github.io/eslint-plugin-vue-i18n/) is ESLint plugin for Vue I18n.
+[eslint-plugin-vue-i18n](https://intlify.github.io/eslint-plugin-vue-i18n/) - Plugin ESLint para Vue I18n.
 
-It easily integrates some localization lint features to your Vue.js Application.
+Permite que você integre facilmente os recursos de localização do lint ao seu aplicativo Vue.js.
 
 ## Intlify CLI
 
-[@intlify/cli](https://github.com/intlify/cli) is CLI Tooling for i18n development.
+[@intlify/cli](https://github.com/intlify/cli) é CLI Tooling para desenvolvimento i18n.
 
-You can pre-compile i18n resources (`json5?`, `ya?ml`) with `intlify compile` command.
+Você pode pré-compilar recursos i18n (`JSON5`, `YAML`) com o comando `intlify compile`.
 
-## Extensions
+### Extensões
 
-[vue-i18n-extensions](https://github.com/intlify/vue-i18n-extensions) provides some extensions for Vue I18n.
+[vue-i18n-extensions](https://github.com/kazupon/vue-i18n-extensions) fornece algumas extensões para Vue I18n.
 
-You can use this extension to enable SSR and improve i18n performance.
+Você pode usar essa extensão para habilitar o `SSR` (Server-Side Rendering/Renderização no servidor) e melhorar o desempenho do i18n.

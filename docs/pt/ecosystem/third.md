@@ -1,34 +1,34 @@
-# Third-party tooling
+# Ferramentas de terceiros
 
-## BabelEdit
+### BabelEdit
 
-[BabelEdit](https://www.codeandweb.com/babeledit) is translation editor for web apps.
+[BabelEdit](https://www.codeandweb.com/babeledit) é um editor de tradução para aplicativos da web.
 
-BabelEdit can translate `json` files, and it can also translate `i18n` custom block of Single-file components.
+O BabelEdit pode traduzir arquivos `json` e também pode trabalhar com blocos personalizados `i18n` de componentes de arquivo único.
 
-Read more about BabelEdit in [tutorial page](https://www.codeandweb.com/babeledit/tutorials/how-to-translate-your-vue-app-with-vue-i18n).
+Mais informações sobre o BabelEdit podem ser encontradas na página de [introdução](https://www.codeandweb.com/babeledit/tutorials/how-to-translate-your-vue-app-with-vue-i18n).
 
-## i18n Ally
+### i18n Ally
 
-[i18n Ally](https://marketplace.visualstudio.com/items?itemName=antfu.i18n-ally) is i18n extension for VSCode.
+[i18n Ally] (https://marketplace.visualstudio.com/items?itemName=antfu.i18n-ally) é uma extensão i18n para VSCode.
 
-The i18n Ally give awesome developer experience for your i18n development.
+i18n Ally oferece um DX(Experiência do desenvolvedor) incrível para o desenvolvimento de i18n.
 
-Read more about i18n Ally in [README](https://github.com/antfu/i18n-ally/blob/master/README.md).
+Você pode aprender mais sobre a extensão i18n Ally em [README](https://github.com/antfu/i18n-ally/blob/master/README.md).
 
-## i18nPlugin (intellij platform)
+### i18nPlugin (plataforma intellij)
 
-[i18nPlugin](https://github.com/nyavro/i18nPlugin) Intellij idea i18next support plugin ( [JetBrains plugin page ](https://plugins.jetbrains.com/plugin/12981-i18n-support)).
+[i18nPlugin](https://github.com/nyavro/i18nPlugin) Plugin de suporte para idea Intellij i18next ([Página do plugin Jetbrains](https://plugins.jetbrains.com/plugin/12981-i18n-support)).
 
-Plugin for i18n typescript/javascript/PHP. Supports vue-i18n. To enable vue-i18n support go to settings -> Tools -> i18n Plugin configuration and check "Vue-i18n". You need set vue locales directory (locales by default).
+Plugin para i18n typescript/javascript/PHP. Suporta vue-i18n. Para habilitar o suporte a vue-i18n vá em `Configurações` > `Ferramentas` > `Configuração do plugin i18n` e selecione `Vue-i18n`. É necessário instalar os diretórios com os arquivos de tradução (tradução por padrão).
 
-## vue-i18n-extract
+### vue-i18n-extract
 
-[vue-i18n-extract](https://github.com/pixari/vue-i18n-extract) performs static analysis on a Vue.js project based on vue-i18n and reports the following information:
+[vue-i18n-extract](https://github.com/pixari/vue-i18n-extract) faz uma análise estática de um projeto Vue.js com base no vue-i18n e relata as seguintes informações:
 
-- list of all the **unused vue-i18n keys** (entries found in the language files but not used in the project)
-- list of all the **missing keys** (entries fond in the project but not in the language files)
+- Lista de todas as **chaves vue-i18n não utilizadas** (entradas encontradas nos arquivos de idioma, mas não utilizadas no projeto)
+- Lista de todas as **chaves ausentes** (entradas encontradas no projeto, mas não nos arquivos de idioma)
 
-It’s possible to show the output in the console or to write it in a json file.
+É possível mostrar a saída no console ou gravar em um arquivo json.
 
-The missing keys can be also automatically added to the given language files.
+As chaves ausentes também podem ser adicionadas automaticamente aos arquivos de tradução fornecidos.
