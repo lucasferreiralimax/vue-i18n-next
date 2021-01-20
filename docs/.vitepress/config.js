@@ -238,27 +238,27 @@ const config = {
           ],
           '/api/': [
             {
-              text: 'General',
+              text: 'Geral',
               link: '/pt/api/general'
             },
             {
-              text: 'Legacy API',
+              text: 'API legada',
               link: '/pt/api/legacy'
             },
             {
-              text: 'Composition API',
+              text: 'API de composição',
               link: '/pt/api/composition'
             },
             {
-              text: 'Components',
+              text: 'Componente',
               link: '/pt/api/component'
             },
             {
-              text: 'Directives',
+              text: 'Diretiva',
               link: '/pt/api/directive'
             },
             {
-              text: 'Component Injections',
+              text: 'Injeções em componente',
               link: '/pt/api/injection'
             }
           ],
@@ -280,23 +280,23 @@ const config = {
                   link: '/pt/guide/',
                 },
                 {
-                  text: 'Message Format Syntax',
+                  text: 'Sintaxe formato de mensagem',
                   link: '/pt/guide/essentials/syntax',
                 },
                 {
-                  text: 'Pluralization',
+                  text: 'Pluralização',
                   link: '/pt/guide/essentials/pluralization'
                 },
                 {
-                  text: 'Datetime Formatting',
+                  text: 'Formatação de data e hora',
                   link: '/pt/guide/essentials/datetime'
                 },
                 {
-                  text: 'Number Formatting',
+                  text: 'Formatação de Número',
                   link: '/pt/guide/essentials/number'
                 },
                 {
-                  text: 'Scope and Locale Changing',
+                  text: 'Mudança de escopo e localização',
                   link: '/pt/guide/essentials/scope'
                 },
                 {
@@ -304,7 +304,7 @@ const config = {
                   link: '/pt/guide/essentials/fallback'
                 },
                 {
-                  text: 'Local Scope Based Localization',
+                  text: 'Localização baseada em escopo local',
                   link: '/pt/guide/essentials/local'
                 }
               ]
@@ -314,15 +314,15 @@ const config = {
               collapsable: false,
               children: [
                 {
-                  text: 'Custom Directive',
+                  text: 'Diretiva personalizada',
                   link: '/pt/guide/advanced/directive'
                 },
                 {
-                  text: 'Component Interpolation',
+                  text: 'Interpolação de componente',
                   link: '/pt/guide/advanced/component'
                 },
                 {
-                  text: 'Single File Components',
+                  text: 'Componentes de arquivo único',
                   link: '/pt/guide/advanced/sfc'
                 },
                 {
@@ -330,15 +330,15 @@ const config = {
                   link: '/pt/guide/advanced/lazy'
                 },
                 {
-                  text: 'Message Functions',
+                  text: 'Funções de mensagem',
                   link: '/pt/guide/advanced/function'
                 },
                 {
-                  text: 'Composition API',
+                  text: 'API de composição',
                   link: '/pt/guide/advanced/composition',
                 },
                 {
-                  text: 'Optimization',
+                  text: 'Otimização',
                   link: '/pt/guide/advanced/optimization',
                 }
               ]
@@ -352,11 +352,11 @@ const config = {
                   link: '/pt/guide/migration/breaking'
                 },
                 {
-                  text: 'New Features',
+                  text: 'Novas Features',
                   link: '/pt/guide/migration/features'
                 },
                 {
-                  text: 'Compostion API for Vue 2',
+                  text: 'API de composição para Vue 2',
                   link: '/pt/guide/migration/composition'
                 }
               ]
