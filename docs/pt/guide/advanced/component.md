@@ -1,14 +1,14 @@
-# Component Interpolation
+# Interpolação de componentes
 
-## Basic Usage
+## Exemplo básico
 
-Sometimes, we need to localize with a locale message that was included in a HTML tag or component. For example:
+Às vezes, precisamos localizar uma mensagem de um localidade incluída em uma tag ou um componente HTML.
 
 ```html
 <p>I accept xxx <a href="/term">Terms of Service Agreement</a></p>
 ```
 
-In the above message, if you use `$t`, you will probably try to compose the following locale messages:
+Na mensagem acima, se quisermos usar `$t`, tentaremos obtê-lo vinculando com as seguintes mensagens de localização:
 
 ```js
 const messages = {
@@ -19,21 +19,21 @@ const messages = {
 }
 ```
 
-And your localized template may look like this:
+Como resultado o template terá a seguinte aparência:
 
 ```html
 <p>{{ $t('term1') }}<a href="/term">{{ $t('term2') }}</a></p>
 ```
 
-Output:
+O resultado será o seguinte:
 
 ```html
 <p>I accept xxx <a href="/term">Terms of Service Agreement</a></p>
 ```
 
-This is very cumbersome, and if you configure the `<a>` tag in a locale message, there is a possibility of XSS vulnerabilities due to localizing with `v-html="$t('term')"`.
+Isso é muito complicado, e se você mover a tag `<a>` para a mensagem de localização, você adicionará a possibilidade de uma vulnerabilidade XSS devido ao uso de `v-html="$t('term')"`.
 
-You can avoid it using the Translation component (`i18n-t`). For example the below.
+Isso pode ser evitado usando o componente funcional `i18n`. Veja este exemplo a seguir.
 
 Template:
 
@@ -47,22 +47,22 @@ Template:
 </div>
 ```
 
-JavaScrirpt:
+JavaScript:
 
 ```js
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 
 const i18n = createI18n({
-  locale: 'en',
+  locale: 'pt',
   messages: {
     en: {
       tos: 'Term of Service',
       term: 'I accept xxx {0}.'
     },
-    ja: {
-      tos: '利用規約',
-      term: '私は xxx の{0}に同意します。'
+    pt: {
+      tos: 'Termos de serviço',
+      term: 'Eu concordo xxx {0}.'
     }
   }
 })
@@ -75,37 +75,37 @@ app.use(i18n)
 app.mount('#app')
 ```
 
-The following output:
+O resultado será o seguinte:
 
 ```html
 <div id="app">
   <!-- ... -->
   <label for="tos">
-    I accept xxx <a href="/term" target="_blank">Term of Service</a>.
+    Eu concordo xxx <a href="/term" target="_blank">Termos de serviço</a>.
   </label>
   <!-- ... -->
 </div>
 ```
 
-About the above example, see the [example](https://github.com/intlify/vue-i18n-next/blob/master/examples/legacy/components/translation.html)
+Mais detalhes sobre o exemplo acima, veja o [exemplo](https://github.com/intlify/vue-i18n-next/blob/master/examples/legacy/components/translation.html)
 
-The children of translation component are interpolated with locale message of `keypath` prop. In the above example,
+Descendentes do componente de tradução são interpolados com a mensagem de localidade da propriedade `keypath`.
 
+No exemplo acima:
 :::v-pre
 `<a :href="url" target="_blank">{{ $t('tos') }}</a>`
 :::
+interpolado com o `term` da mensagem de localização.
 
-Is interpolated with `term` locale message.
-
-In the above example, the component interpolation follows the **list interpolation**. The children of translation component are interpolated by their order of appearance.
+No exemplo acima, a interpolação de componentes usa **interpolação da lista**. Os descendentes do componente de tradução são interpolados na ordem em que aparecem.
 
 <!-- textlint-disable -->
-You can choose the root node element type by specifying a `tag` prop. If omitted, it defaults to [Fragments](https://v3.vuejs.org/guide/migration/fragments.html#overview).
+Você pode escolher o tipo do elemento especificando uma `tag`. Se omitido, o padrão é [Fragments](https://v3.vuejs.org/guide/migration/fragments.html#overview).
 <!-- textlint-enable -->
 
-## Slots syntax usage
+## Usando a sintaxe de slots
 
-It’s more convenient to use the named slots syntax. For example the below:
+É mais conveniente usar a sintaxe de slots nomeados. Veja este exemplo a seguir.
 
 Template:
 
@@ -154,7 +154,7 @@ app.use(i18)
 app.mount('#app')
 ```
 
-Outputs:
+O resultado será o seguinte:
 
 ```html
 <div id="app">
@@ -166,7 +166,7 @@ Outputs:
 </div>
 ```
 
-You can also use the following slots shorthand in templates:
+Você também pode usar as seguintes abreviações de slots no template:
 
 ```html
 <div id="app">
@@ -183,6 +183,6 @@ You can also use the following slots shorthand in templates:
 </div>
 ```
 
-:::warning LIMITATION
-:warning: In translation component, slots props are not supported.
+:::warning LIMITAÇÃO
+:warning: No componente de tradução, props de slots não são suportados.
 :::
