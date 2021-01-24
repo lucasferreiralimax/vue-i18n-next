@@ -1,6 +1,6 @@
 {
   "name": "vue-i18n-next",
-  "version": "9.0.0-rc.2",
+  "version": "9.0.0-rc.4",
   "license": "MIT",
   "author": {
     "name": "kazuya kawaguchi",
@@ -121,7 +121,7 @@
     "ts-jest": "^26.4.0",
     "typescript": "^4.1.2",
     "typescript-eslint-language-service": "^4.1.2",
-    "vitepress": "^0.11.0",
+    "vitepress": "^0.11.3",
     "vue": "^3.0.0"
   },
   "engines": {

@@ -272,6 +272,7 @@ const config = {
               link: '/pt/installation',
             },
             {
+<<<<<<< HEAD
               text: 'Essenciais',
               collapsable: false,
               children: [
@@ -365,6 +366,11 @@ const config = {
               text: 'Documentação para v8.x',
               link: '/pt/v8-docs',
             },
+=======
+              text: 'Composition API for Vue 2',
+              link: '/guide/migration/composition'
+            }
+>>>>>>> vue-i18n-next/master
           ]
         }
       }
