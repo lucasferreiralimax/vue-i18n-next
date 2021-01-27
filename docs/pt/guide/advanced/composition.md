@@ -1,65 +1,67 @@
-# Composition API
+# API de composição
 
-The introduction of `setup` and Vue’s [Composition API](https://v3.vuejs.org/guide/composition-api-introduction.html) open up new possibilities. But to be able to get the full potential out of Vue I18n, we will need to use a few new functions to replace access to `this`.
+A introdução de `setup` e [API de composição do Vue](https://v3.vuejs.org/guide/composition-api-introduction.html) abre novas possibilidades. Mas para conseguirmos tirar todo o potencial do Vue I18n, nós precisaremos usar novas funções para substituir o acesso a `this`.
 
-We have been describing the features of Vue I18n using the Legacy API, which is compatible with vue-i18n v8.x. Now let’s take a look at Vue I18n `useI18n` for Composition API.
+Descrevemos os recursos do Vue I18n usando a API Legacy, que é compatível com o vue-i18n v8.x.
 
-## Basic Usage
+Agora vamos dar uma olhada no Vue I18n `useI18n` para a API de composição.
 
-Let’s look at the basic usage of Vue I18n Composition API! Here we will learn the basic usage by modifying the code in [Getting Started](../../guide/) to learn the basic usage.
+## Uso Básico
 
-To compose with `useI18n` in `setup` of Vue 3, there is one thing you need to do, you need set the `legacy` option of the `createI18n` function to `false`.
+Vejamos o uso básico da API de composição Vue I18n! Aqui e aprenderemos o uso básico modificando o código em [Introdução](../../guide/) para aprender o uso básico.
 
-The following is an example of adding the `legacy` option to `createI18n`:
+Para compor com `useI18n` no `setup` do Vue 3, há uma coisa que você precisa fazer, você precisa definir a opção `legacy` da função `createI18n` para `false`.
+
+A seguir está um exemplo de adição da opção `legacy` ao `createI18n`:
 
 ```js{5}
 // ...
 
-// 2. Create i18n instance with options
+// 2. Criar instância i18n com as opções
 const i18n = VueI18n.createI18n({
-  legacy: false, // you must set `false`, to use Compostion API
-  locale: 'ja', // set locale
-  fallbackLocale: 'en' // set fallback locale
-  messages, // set locale messages
-  // If you need to specify other options, you can set other options
+  legacy: false, // você deve definir `false`, para usar a API de composição
+  locale: 'pt', // definir localidade
+  fallbackLocale: 'en' // definir fallback da localidade
+  messages, // definir mensagens da localidade
+  // Se você precisar especificar outras opções, você pode definir outras opções como desejar
   // ...
 })
 
 // ...
 ```
 
-You can set `legacy: false` to allow Vue I18n to switch the API mode, from Legacy API mode to Composition API mode.
+Você pode definir `legacy: false` para permitir que o Vue I18n mude o modo da API, o modo de API legacy para o modo de API de composição.
 
-:::tip NOTE
-The following properties of i18n instance created by `createI18n` change it’s behavior:
+:::tip NOTA
+As seguintes propriedades da instância i18n criada por `createI18n` mudam seu comportamento:
 
-- `mode` property: `"legacy"` to `"composition"`
-- `global` property: VueI18n instance to Composer instance
+- `mode` propriedade: `"legacy"` para `"composition"`
+- `global` propriedade: Instância VueI18n para instância Composer
 :::
 
-You are now ready to use `useI18n`. Now you are ready to use `useI18n` in the component `setup`. The code looks like this:
+Agora você está pronto para usar `useI18n`. E estará pronto para usar `useI18n` no componente `setup`. O código é parecido como este:
 
 ```js{5-8}
 // ...
 
-// 3. Create a vue root instance
+// 3. Crie uma instância vue root
 const app = Vue.createApp({
   setup() {
-    const { t } = VueI18n.useI18n() // call `useI18n`, and spread `t` from  `useI18n` returning
-    return { t } // return render context that included `t`
+    const { t } = VueI18n.useI18n() // chama `useI18n` e define `t` a partir do retorno de `useI18n`
+    return { t } // retorna o contexto de renderização incluindo `t`
   }
 })
 
 // ...
 ```
 
-You must call `useI18n` at top of the `setup`.
+Você deve chamar `useI18n` no início do `setup`.
 
-The `useI18n` returns a Composer instance. The Compser instance provides a translation API such as the `t` function, as well as properties such as `locale` and `fallbackLocale`, just like the VueI18n instance. For more information on the Composer instance, see the [API Reference](../../api/composition#composer).
+O `useI18n` retorna uma instância do Composer. A instância Compser fornece uma API de tradução, com a função `t`, bem como propriedades como `locale` e `fallbackLocale`, assim como a instância VueI18n. Para obter mais informações sobre a instância do Composer, consulte a [Referência da API](../../api/composition#composer).
 
-In the above example, there are no options for `useI18n`, so it returns a Composer instance that works with the global scope. As such, it returns a Composer instance that works with the global scope, which means that the localized message referenced by the spread `t` function here is the one specified in `createI18n`. This means that the locale message referenced by the spread `t` function here will be the locale message specified in `createI18n`.
+No exemplo acima, não há opções para `useI18n`, então retorna uma instância do Composer que funciona com o escopo global. Com isso retornando uma instância do Composer que funciona com o escopo global, significa que a mensagem localizada referenciada pela função spread `t` aqui é aquela especificada em `createI18n`.
 
-By returning `t` as render context in the `setup`, you can use `t` in the components template:
+Ao retornar `t` como contexto de renderização no `setup`, você poderá usar `t` no template dos componentes:
 
 ```html{2}
 <div id="app">
@@ -67,11 +69,11 @@ By returning `t` as render context in the `setup`, you can use `t` in the compon
 </div>
 ```
 
-The output follows:
+O resultado será o seguinte:
 
 ```html{2}
 <div id="app">
-  <p>こんにちは、世界</p>
+  <p>Olá Mundo</p>
 </div>
 ```
 
