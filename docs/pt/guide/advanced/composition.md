@@ -77,11 +77,11 @@ O resultado será o seguinte:
 </div>
 ```
 
-## Message Translation
+## Mensagem da tradução
 
-In the Legacy API mode, The messages were translated using either `$t` or the VueI18n instance of `t` to translate the message.
+No modo da API legacy, as mensagens foram traduzidas usando `$t` ou a instância VueI18n de `t` para traduzir a mensagem.
 
-In the Compostion API mode, the Message Format Syntax remains the same as in the Legacy API mode. You can use the Composer instance `t` to translate a message as follows:
+No modo de API de composição, a sintaxe do formato da mensagem permanece a mesma que no modo da API legacy. Podendo usar a instância do Composer `t` para traduzir uma mensagem da seguinte forma:
 
 ```html
 <template>
@@ -109,14 +109,14 @@ export default {
           dio: 'DIO:',
           linked: '@:dio @:the_world !!!!'
         },
-        ja: {
-          msg: 'こんにちは',
-          named: '{msg} 世界！',
-          list: '{0} 世界！',
-          literal: "{'こんにちは'} 世界！",
-          the_world: 'ザ・ワールド！',
-          dio: 'ディオ:',
-          linked: '@:dio @:the_world ！！！！'
+        pt: {
+          msg: 'olá',
+          named: '{msg} mundo',
+          list: '{0} mundo',
+          literal: "{'olá'} mundo",
+          the_world: 'o mundo!',
+          dio: 'Dio:',
+          linked: '@:dio @:the_world !!!!'
         }
       }
     })
@@ -129,13 +129,13 @@ export default {
 </script>
 ```
 
-For more details of `t`, see the [API Reference](../../api/composition#t-key).
+Para obter mais detalhes sobre `t`, consulte a [Referência da API](../../api/composition#t-key).
 
-## Pluralization
+## Pluralização
 
-In the Legacy API mode, the plural form of the message was translated using either `$tc` or the VueI18n instance of `tc` to translate the message.
+No modo API legacy, a forma plural da mensagem foi traduzida usando `$tc` ou a instância VueI18n de `tc` para traduzir a mensagem.
 
-In the Compostion API mode, the plural form of the message is left in sytax as in the Legacy API mode, but is translated using the `t` of the Composer instance:
+No modo API de composição, a forma plural da mensagem é deixada na sintaxe como no modo API Legacy, mas é traduzida usando o `t` da instância do Composer:
 
 ```html
 <template>
@@ -159,12 +159,12 @@ import { useI18n } from 'vue-i18n'
 export default {
   setup() {
     const { t } = useI18n({
-      locale: 'en',
+      locale: 'pt',
       messages: {
-        en: {
-          car: 'car | cars',
-          apple: 'no apples | one apple | {count} apples',
-          banana: 'no bananas | {n} banana | {n} bananas'
+        pt: {
+          car: 'carro | carros',
+          apple: 'sem maçãs | uma maçã | {count} maçãs',
+          banana: 'sem bananas | {n} banana | {n} bananas'
         }
       }
     })
@@ -175,8 +175,8 @@ export default {
 </script>
 ```
 
-:::tip NOTE
-In the Composition API mode, plural translations have been integrated into `t`.
+:::tip NOTA
+No modo da API de composição, traduções plurais foram integradas em `t`.
 :::
 
 ## Datetime Formatting
