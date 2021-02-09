@@ -968,16 +968,24 @@ function hasOwn(obj: object | Array<any>, key: string): boolean {
   return hasOwnProperty.call(obj, key)
 }
 
+const isNotObjectOrIsArray = (val: unknown) => !isObject(val) || isArray(val)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function deepCopy(source: any, destination: any): void {
-  for (const key in source) {
-    if (hasOwn(source, key)) {
-      if (!isObject(source[key])) {
-        destination[key] = destination[key] != null ? destination[key] : {}
-        destination[key] = source[key]
+function deepCopy(src: any, des: any): void {
+  // src and des should both be objects, and non of then can be a array
+  if (isNotObjectOrIsArray(src) || isNotObjectOrIsArray(des)) {
+    throw createI18nError(I18nErrorCodes.INVALID_VALUE)
+  }
+
+  for (const key in src) {
+    if (hasOwn(src, key)) {
+      if (isNotObjectOrIsArray(src[key]) || isNotObjectOrIsArray(des[key])) {
+        // replace with src[key] when:
+        // src[key] or des[key] is not a object, or
+        // src[key] or des[key] is a array
+        des[key] = src[key]
       } else {
-        destination[key] = destination[key] != null ? destination[key] : {}
-        deepCopy(source[key], destination[key])
+        // src[key] and des[key] are both object, merge them
+        deepCopy(src[key], des[key])
       }
     }
   }
@@ -1415,10 +1423,8 @@ export function createComposer<
     locale: Locale,
     message: LocaleMessageDictionary<Message>
   ): void {
-    _messages.value[locale] = Object.assign(
-      _messages.value[locale] || {},
-      message
-    )
+    _messages.value[locale] = _messages.value[locale] || {}
+    deepCopy(message, _messages.value[locale])
     _context.messages = _messages.value as typeof _context.messages
   }
 

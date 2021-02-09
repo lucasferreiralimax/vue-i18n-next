@@ -5,42 +5,91 @@ Internationalization plugin for Vue.js
 <h3>🥇 Gold Sponsors<h3>
 
 <p>
-  <a href="https://nuxtjs.org/" target="_blank">
-    <img src="https://raw.githubusercontent.com/intlify/vue-i18n-next/master/docs/public/nuxt.png">
+  <a
+    href="https://nuxtjs.org/"
+    style="margin: 1rem 1rem 0 1rem; width: 15rem; height: auto; display: inline-block; vertical-align: middle;"
+    target="_blank"
+    rel="noopener"
+  >
+    <img
+      style="max-width: 100%; vertical-align: midele;"
+      src="https://raw.githubusercontent.com/intlify/vue-i18n-next/master/docs/public/nuxt.png"
+      width="260px"
+      alt="Nuxt.js"
+    >
   </a>
 </p>
 
 <h3>🥈 Silver Sponsors</h3>
 
 <p>
-  <a href="https://www.codeandweb.com/babeledit?utm_campaign=vue-i18n-2019-01" target="_blank">
-    <img src="https://raw.githubusercontent.com/intlify/vue-i18n-next/master/docs/public/babeledit.png">
+  <a
+    href="https://www.codeandweb.com/babeledit?utm_campaign=vue-i18n-2019-01"
+    style="margin: 1rem 1rem 0 1rem; width: 12rem; height: auto; display: inline-block; vertical-align: middle;"
+    target="_blank"
+    rel="noopener"
+  >
+    <img
+      style="max-width: 100%; vertical-align: midele;"
+      src="https://raw.githubusercontent.com/intlify/vue-i18n-next/master/docs/public/babeledit.png"
+      width="200px"
+      alt="Babel Edit"
+    >
   </a>
 </p>
 
 <h3>🥉 Bronze Sponsors</h3>
 
 <p>
-  <a href="https://zenarchitects.co.jp/" target="_blank">
-    <img src="https://raw.githubusercontent.com/intlify/vue-i18n-next/master/docs/public/zenarchitects.png" width="200px">
+  <a
+    href="https://zenarchitects.co.jp/"
+    style="margin: 1rem 1rem 0 1rem; width: 9rem; height: auto; display: inline-block; vertical-align: middle;"
+    target="_blank"
+    rel="noopener"
+  >
+    <img
+      style="max-width: 100%; vertical-align: midele;"
+      src="https://raw.githubusercontent.com/intlify/vue-i18n-next/master/docs/public/zenarchitects.png"
+      width="140px"
+      alt="Zen Architects"
+    >
   </a>
 </p>
-
-<br />
-<br />
-
 <p>
-  <a href="https://www.sendcloud.com/" target="_blank">
-    <img src="https://raw.githubusercontent.com/intlify/vue-i18n-next/master/docs/public/sendcloud.svg" width="200px">
+  <a
+    href="https://www.sendcloud.com/"
+    style="margin: 1rem 1rem 0 1rem; width: 9rem; height: auto; display: inline-block; vertical-align: middle;"
+    target="_blank"
+    rel="noopener"
+  >
+    <img
+      style="max-width: 100%; vertical-align: midele;"
+      src="https://raw.githubusercontent.com/intlify/vue-i18n-next/master/docs/public/sendcloud.png"
+      width="140px"
+      alt="Send Cloud"
+    >
+  </a>
+</p>
+<p>
+  <a
+    href="https://www.vuemastery.com/"
+    style="margin: 1rem 1rem 0 1rem; width: 9rem; height: auto; display: inline-block; vertical-align: middle;"
+    target="_blank"
+    rel="noopener"
+  >
+    <img
+      style="max-width: 100%; vertical-align: midele;"
+      src="https://raw.githubusercontent.com/intlify/vue-i18n-next/master/docs/public/vuemastery.png"
+      width="140px"
+      alt="Vue Mastery"
+    >
   </a>
 </p>
 
-<br/>
-<br/>
 
 ## Status: RC ![Test](https://github.com/intlify/vue-i18n-next/workflows/Test/badge.svg)
 
-- [Documetantion](https://vue-i18n-next.intlify.dev/) (beta)
+- [Documentation](https://vue-i18n.intlify.dev/) (beta)
 - If you use stable Vue I18n version, see this [repository](https://github.com/kazupon/vue-i18n)
 
 ## :raising_hand: About support for v9 and earlier
@@ -51,15 +100,15 @@ Internationalization plugin for Vue.js
 
 See the [`examples`](https://github.com/intlify/vue-i18n-next/tree/master/examples) directory.
 
-The examples are offered in thee following two API styles:
+The examples are offered in the following two API styles:
 
 - composition
-  - Examples with using new vue-i18n API for Vue 3 Composition API
+  - Examples using the new vue-i18n API for Vue 3 Composition API
 - legacy
-  - Examples with using vue-i18n API that are almost compatible with vue-i18n v8.x
+  - Examples using the vue-i18n API that are almost compatible with vue-i18n v8.x
 
 
-## :package: Main Pakcages
+## :package: Main Packages
 
 | Package | NPM |
 | ------- | --- |

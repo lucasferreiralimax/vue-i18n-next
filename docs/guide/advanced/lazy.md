@@ -56,7 +56,7 @@ export function setI18nLanguage(i18n, locale) {
 }
 
 export async function loadLocaleMessages(i18n, locale) {
-  // load locale messages with dynami import
+  // load locale messages with dynamic import
   const messages = await import(
     /* webpackChunkName: "locale-[request]" */ `./locales/${locale}.json`
   )
@@ -73,6 +73,11 @@ The following three functions are exported:
 - `setupI18n`
 - `setI18nLanguage`
 - `loadLocaleMessages`
+
+:::tip NOTE
+This code example also shows how to handle it outside of the component using the [`global` property of i18n instance](../../api/general#global).
+About i18n instance, see the [API Reference](../../api/general)
+:::
 
 The `setupI18n` function takes the same options as `createI18n`, creates an instance of i18n with those options, executes the `setI18nLanguage` function, and returns the i18n instance.
 
