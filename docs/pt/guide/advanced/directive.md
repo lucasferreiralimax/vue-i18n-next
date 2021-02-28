@@ -1,10 +1,10 @@
-# Custom Directive
+# Diretiva Personalizada
 
-You can translate not only with `$t`, but also with the `v-t` custom directive.
+Você pode traduzir não apenas com `$t`, mas também com a diretiva personalizada `v-t`.
 
-## String syntax
+## Sintaxe de string
 
-You can pass the keypath of locale messages with string syntax.
+Você pode passar o keypath das mensagens de localidade com sintaxe de string.
 
 Javascript:
 
@@ -13,10 +13,10 @@ import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 
 const i18n = createI18n({
-  locale: 'en',
+  locale: 'pt',
   messages: {
-    en: { hello: 'hi there!' },
-    ja: { hello: 'こんにちは！' }
+    pt: { hello: 'Olá!' },
+    en: { hello: 'hi there!' }
   }
 })
 
@@ -33,23 +33,23 @@ Templates:
 <div id="string-syntax">
   <!-- string literal -->
   <p v-t="'hello'"></p>
-  <!-- keypath binding via data -->
+  <!-- vinculação de dados via data -->
   <p v-t="path"></p>
 </div>
 ```
 
-Outputs:
+O resultado será o seguinte:
 
 ```html
 <div id="string-syntax">
-  <p>hi there!</p>
-  <p>hi there!</p>
+  <p>Olá!</p>
+  <p>Olá!</p>
 </div>
 ```
 
-## Object syntax
+## Sintaxe de objeto
 
-You can use object syntax.
+Você pode usar a sintaxe de objeto.
 
 Javascript:
 
@@ -58,18 +58,18 @@ import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 
 const i18n = createI18n({
-  locale: 'ja',
+  locale: 'pt',
   messages: {
+    pt: {
+      message: {
+        hi: 'Olá, {name}！',
+        bye: 'Adeus!'
+      }
+    },
     en: {
       message: {
         hi: 'Hi, {name}!',
         bye: 'good bye!'
-      }
-    },
-    ja: {
-      message: {
-        hi: 'こんにちは、 {name}！',
-        bye: 'さようなら！'
       }
     }
   }
@@ -88,9 +88,9 @@ Templates:
 
 ```html
 <div id="app">
-  <!-- literal -->
-  <p v-t="{ path: 'message.hi', args: { name: 'kazupon' } }"></p>
-  <!-- data binding via data -->
+  <!-- string literal -->
+  <p v-t="{ path: 'message.hi', args: { name: 'lucas' } }"></p>
+  <!-- vinculação de dados via data -->
   <p v-t="{ path: byePath, locale: 'en' }"></p>
 </div>
 ```
@@ -99,7 +99,7 @@ Outputs:
 
 ```html
 <div id="object-syntax">
-  <p>こんにちは、 kazupon！</p>
+  <p>Olá, lucas！</p>
   <p>good bye!</p>
 </div>
 ```
@@ -108,26 +108,26 @@ Outputs:
 
 ### `$t`
 
-`$t` is function of Vue18n instance. It has the following pros and cons:
+`$t` é função da instância Vue18n. Tem os seguintes prós e contras:
 
-#### Pros
+#### Prós
 
-You can **flexibly** use mustache syntax `{}` in templates and also computed props and methods in Vue component instance.
+Você pode **flexivelmente** usar a sintaxe mustache `{}` em modelos e também props e métodos computados na instância do componente Vue.
 
-#### Cons
+#### Contras
 
-`$t` is executed **every time** when re-render occurs, so it does have translation costs.
+`$t` é executado **toda vez** quando ocorre uma nova renderização, portanto, tem custos de tradução.
 
 ### `v-t`
 
-`v-t` is a custom directive. It has the following pros and cons:
+`v-t` é uma diretiva personalizada. Tem os seguintes prós e contras:
 
-#### Pros
+#### Prós
 
-`v-t` has **better performance** than the `$t` function due to its pre-translation is possible with the Vue compiler module which was provided by [vue-i18n-extensions](https://github.com/intlify/vue-i18n-extensions).
+`vt` tem **melhor desempenho** do que a função `$t` devido à sua pré-tradução é possível com o módulo do compilador Vue que foi fornecido em [vue-i18n-extensions](https://github.com/intlify/vue-i18n-extensions).
 
-Therefore it’s possible to make **more performance optimizations**.
+No entanto, é possível fazer **mais otimizações de desempenho**.
 
-#### Cons
+#### Contras
 
-`v-t` cannot be flexibly used like `$t`, it’s rather **complex**. The translated content with `v-t` is inserted into the `textContent` of the element. Also, when you use server-side rendering, you need to set the [custom transform](https://github.com/intlify/vue-i18n-extensions#server-side-rendering-for-v-t-custom-directive) to `directiveTransforms` option of the `compile` function of `@vue/compiler-ssr`.
+`v-t` não pode ser usado de forma flexível como `$t`, e é bastante **complexo**. O conteúdo traduzido com `v-t` é inserido no `textContent` do elemento. Além disso, ao usar a renderização do lado do servidor, você precisa definir a [transformação personalizada](https://github.com/intlify/vue-i18n-extensions#server-side-rendering-for-vt-custom-directive) para a opção `directiveTransforms` da função `compile` do `@vue/compiler-ssr`.
