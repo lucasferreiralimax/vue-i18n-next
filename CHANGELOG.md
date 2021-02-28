@@ -1,3 +1,59 @@
+## v9.0.0 (2021-02-27)
+
+See the below link:
+https://blog.intlify.dev/posts/vue-i18n-9.html
+
+
+## v9.0.0-rc.9 (2021-02-26)
+
+#### :bug: Bug Fixes
+* `vue-i18n`
+  * [#365](https://github.com/intlify/vue-i18n-next/pull/365) fix: undefind setter using ([@kazupon](https://github.com/kazupon))
+
+#### Committers: 2
+- Lee ([@PeterAlfredLee](https://github.com/PeterAlfredLee))
+- kazuya kawaguchi ([@kazupon](https://github.com/kazupon))
+
+
+## v9.0.0-rc.8 (2021-02-23)
+
+#### :bug: Bug Fixes
+* `vue-i18n`
+  * [#357](https://github.com/intlify/vue-i18n-next/pull/357) fix: cannot apply custom pluralization rules ([@kazupon](https://github.com/kazupon))
+
+#### :pencil: Documentation
+* [#354](https://github.com/intlify/vue-i18n-next/pull/354) Fix typo in breaking.md ([@ota-meshi](https://github.com/ota-meshi))
+
+#### Committers: 3
+- Lee ([@PeterAlfredLee](https://github.com/PeterAlfredLee))
+- Yosuke Ota ([@ota-meshi](https://github.com/ota-meshi))
+- kazuya kawaguchi ([@kazupon](https://github.com/kazupon))
+
+
+## v9.0.0-rc.7 (2021-02-16)
+
+#### :zap: Improvement Features
+* `vue-i18n`
+  * [#346](https://github.com/intlify/vue-i18n-next/pull/346) Support vetur component data ([@kazupon](https://github.com/kazupon))
+* `message-compiler`
+  * [#345](https://github.com/intlify/vue-i18n-next/pull/345) fix: convert Set with Array.from ([@sayuti-daniel](https://github.com/sayuti-daniel))
+
+#### Committers: 2
+- Sayuti Daniel ([@sayuti-daniel](https://github.com/sayuti-daniel))
+- kazuya kawaguchi ([@kazupon](https://github.com/kazupon))
+
+
+## v9.0.0-rc.6 (2021-02-10)
+
+#### :bug: Bug Fixes
+* `vue-i18n`
+  * [#342](https://github.com/intlify/vue-i18n-next/pull/342) fix: feature flags ([@kazupon](https://github.com/kazupon))
+  * [#334](https://github.com/intlify/vue-i18n-next/pull/334) fix for function `mergeLocaleMessage`, and modify some tests ([@PeterAlfredLee](https://github.com/PeterAlfredLee))
+
+#### Committers: 2
+- Lee ([@PeterAlfredLee](https://github.com/PeterAlfredLee))
+- kazuya kawaguchi ([@kazupon](https://github.com/kazupon))
+
 
 ## v9.0.0-rc.5 (2021-02-02)
 

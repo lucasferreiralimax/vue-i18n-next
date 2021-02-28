@@ -1,10 +1,12 @@
 # vue-i18n-next
 
+> This is the repository for Vue I18n 9 (for Vue 3)
+
 Internationalization plugin for Vue.js
 
-<h3>🥇 Gold Sponsors<h3>
+<h3 align="center">🥇 Gold Sponsors<h3>
 
-<p>
+<p align="center">
   <a
     href="https://nuxtjs.org/"
     style="margin: 1rem 1rem 0 1rem; width: 15rem; height: auto; display: inline-block; vertical-align: middle;"
@@ -20,9 +22,9 @@ Internationalization plugin for Vue.js
   </a>
 </p>
 
-<h3>🥈 Silver Sponsors</h3>
+<h3 align="center">🥈 Silver Sponsors</h3>
 
-<p>
+<p align="center">
   <a
     href="https://www.codeandweb.com/babeledit?utm_campaign=vue-i18n-2019-01"
     style="margin: 1rem 1rem 0 1rem; width: 12rem; height: auto; display: inline-block; vertical-align: middle;"
@@ -38,9 +40,9 @@ Internationalization plugin for Vue.js
   </a>
 </p>
 
-<h3>🥉 Bronze Sponsors</h3>
+<h3 align="center">🥉 Bronze Sponsors</h3>
 
-<p>
+<p align="center">
   <a
     href="https://zenarchitects.co.jp/"
     style="margin: 1rem 1rem 0 1rem; width: 9rem; height: auto; display: inline-block; vertical-align: middle;"
@@ -55,7 +57,7 @@ Internationalization plugin for Vue.js
     >
   </a>
 </p>
-<p>
+<p align="center">
   <a
     href="https://www.sendcloud.com/"
     style="margin: 1rem 1rem 0 1rem; width: 9rem; height: auto; display: inline-block; vertical-align: middle;"
@@ -70,7 +72,7 @@ Internationalization plugin for Vue.js
     >
   </a>
 </p>
-<p>
+<p align="center">
   <a
     href="https://www.vuemastery.com/"
     style="margin: 1rem 1rem 0 1rem; width: 9rem; height: auto; display: inline-block; vertical-align: middle;"
@@ -87,10 +89,10 @@ Internationalization plugin for Vue.js
 </p>
 
 
-## Status: RC ![Test](https://github.com/intlify/vue-i18n-next/workflows/Test/badge.svg)
+## Status: ![Test](https://github.com/intlify/vue-i18n-next/workflows/Test/badge.svg)
 
-- [Documentation](https://vue-i18n.intlify.dev/) (beta)
-- If you use stable Vue I18n version, see this [repository](https://github.com/kazupon/vue-i18n)
+- [Documentation](https://vue-i18n.intlify.dev/)
+- If you use Vue I18n v8, see this [repository](https://github.com/kazupon/vue-i18n)
 
 ## :raising_hand: About support for v9 and earlier
 - v6 and earlier: drop supporting
@@ -103,9 +105,9 @@ See the [`examples`](https://github.com/intlify/vue-i18n-next/tree/master/exampl
 The examples are offered in the following two API styles:
 
 - composition
-  - Examples using the new vue-i18n API for Vue 3 Composition API
+  - Examples using the new Vue I18n API for Vue 3 Composition API
 - legacy
-  - Examples using the vue-i18n API that are almost compatible with vue-i18n v8.x
+  - Examples using the Vue I18n API that are almost compatible with Vue I18n v8.x
 
 
 ## :package: Main Packages
@@ -124,14 +126,14 @@ The examples are offered in the following two API styles:
 
 | Project | NPM | Repo |
 | ------- | --- | ---- |
-| Vue CLI Plugin | [![vue-cli-plugin-i18n](https://img.shields.io/npm/v/vue-cli-plugin-i18n/beta.svg)](https://www.npmjs.com/package/vue-cli-plugin-i18n) | [intlify/vue-cli-plugin-i18n](https://github.com/intlify/vue-cli-plugin-i18n)
-| Vue I18n Extensions | [![@intlify/vue-i18n-extensions](https://img.shields.io/npm/v/@intlify/vue-i18n-extensions/beta.svg)](https://www.npmjs.com/package/@intlify/vue-i18n-extensions) | [intlify/vue-i18n-extentions](https://github.com/intlify/vue-i18n-extensions)
+| Vue CLI Plugin | [![vue-cli-plugin-i18n](https://img.shields.io/npm/v/vue-cli-plugin-i18n/next.svg)](https://www.npmjs.com/package/vue-cli-plugin-i18n) | [intlify/vue-cli-plugin-i18n](https://github.com/intlify/vue-cli-plugin-i18n)
+| Vue I18n Extensions | [![@intlify/vue-i18n-extensions](https://img.shields.io/npm/v/@intlify/vue-i18n-extensions/next.svg)](https://www.npmjs.com/package/@intlify/vue-i18n-extensions) | [intlify/vue-i18n-extentions](https://github.com/intlify/vue-i18n-extensions)
 | ESLint Plugin | [![@intlify/eslint-plugin-vue-i18n](https://img.shields.io/npm/v/@intlify/eslint-plugin-vue-i18n.svg)](https://www.npmjs.com/package/@intlify/eslint-plugin-vue-i18n) | [intlify/eslint-plugin-vue-i18n](https://github.com/intlify/eslint-plugin-vue-i18n)
 | Composition API for Vue 2.x | [![vue-i18n-composable](https://img.shields.io/npm/v/vue-i18n-composable.svg)](https://www.npmjs.com/package/vue-i18n-composable) | [intlify/vue-i18n-composable](https://github.com/intlify/vue-i18n-composable)
 | CLI | [![intlify/cli](https://img.shields.io/npm/v/@intlify/cli.svg)](https://www.npmjs.com/package/@intlify/cli) | [intlify/cli](https://github.com/intlify/cli)
 | Vite Plugin | [![@intlify/vite-plugin-vue-i18n](https://img.shields.io/npm/v/@intlify/vite-plugin-vue-i18n.svg)](https://www.npmjs.com/package/@intlify/vite-plugin-vue-i18n) | [intlify/vite-plugin-vue-i18n](https://github.com/intlify/vite-plugin-vue-i18n)
-| Webpack Loader | [![@intlify/vue-i18n-loader](https://img.shields.io/npm/v/@intlify/vue-i18n-loader/beta.svg)](https://www.npmjs.com/package/@intlify/vue-i18n-loader) | [intlify/vue-i18n-loader](https://github.com/intlify/vue-i18n-loader)
-| Rollup Plugin | [![@intlify/rollup-plugin-vue-i18n](https://img.shields.io/npm/v/@intlify/rollup-plugin-vue-i18n/beta.svg)](https://www.npmjs.com/package/@intlify/rollup-plugin-vue-i18n) | [intlify/rollup-plugin-vue-i18n](https://github.com/intlify/rollup-plugin-vue-i18n)
+| Webpack Loader | [![@intlify/vue-i18n-loader](https://img.shields.io/npm/v/@intlify/vue-i18n-loader/next.svg)](https://www.npmjs.com/package/@intlify/vue-i18n-loader) | [intlify/vue-i18n-loader](https://github.com/intlify/vue-i18n-loader)
+| Rollup Plugin | [![@intlify/rollup-plugin-vue-i18n](https://img.shields.io/npm/v/@intlify/rollup-plugin-vue-i18n/next.svg)](https://www.npmjs.com/package/@intlify/rollup-plugin-vue-i18n) | [intlify/rollup-plugin-vue-i18n](https://github.com/intlify/rollup-plugin-vue-i18n)
 | Vue Jest Plugin | [![vue-i18n-jest](https://img.shields.io/npm/v/vue-i18n-jest.svg)](https://www.npmjs.com/package/vue-i18n-jest) | [intlify/vue-i18n-jest](https://github.com/intlify/vue-i18n-jest)
 | Vue I18n Locale Message Tools | [![vue-i18n-locale-message](https://img.shields.io/npm/v/vue-i18n-locale-message.svg)](https://www.npmjs.com/package/vue-i18n-locale-message) | [intlify/vue-i18n-locale-message](https://github.com/intlify/vue-i18n-locale-message)
 
