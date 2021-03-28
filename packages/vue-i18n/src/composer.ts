@@ -16,9 +16,12 @@ import {
   isBoolean,
   isPlainObject,
   makeSymbol,
-  isObject
+  isObject,
+  hasOwn
 } from '@intlify/shared'
 import {
+  isTranslateFallbackWarn,
+  isTranslateMissingWarn,
   resolveValue,
   createCoreContext,
   MISSING_RESOLVE_VALUE,
@@ -31,8 +34,10 @@ import {
   number,
   parseNumberArgs,
   clearNumberFormat,
+  getLocaleChain,
   NOT_REOSLVED,
-  DevToolsTimelineEvents
+  DevToolsTimelineEvents,
+  handleFlatJson
 } from '@intlify/core-base'
 import { I18nWarnCodes, getWarnMessage } from './warnings'
 import { I18nErrorCodes, createI18nError } from './errors'
@@ -136,7 +141,7 @@ export interface ComposerOptions<Message = VueMessageType> {
    *
    * @VueI18nSee [Fallbacking](../../guide/essentials/fallback)
    *
-   * @defaultValue `true`
+   * @defaultValue The default `'en-US'` for the `locale` if it's not specified, or it's `locale` value
    */
   fallbackLocale?: FallbackLocale
   /**
@@ -159,6 +164,13 @@ export interface ComposerOptions<Message = VueMessageType> {
    * @defaultValue `{}`
    */
   messages?: LocaleMessages<Message>
+  /**
+   * @remarks
+   * Allow use flat json messages or not
+   *
+   * @defaultValue `false`
+   */
+  flatJson?: boolean
   /**
    * @remarks
    * The datetime formats of localization.
@@ -232,9 +244,9 @@ export interface ComposerOptions<Message = VueMessageType> {
   fallbackWarn?: boolean | RegExp
   /**
    * @remarks
-   * In the component localization, whether to fall back to root level (global) localization when localization fails.
+   * In the component localization, whether to fallback to root level (global scope) localization when localization fails.
    *
-   * If `false`, it's warned, and is returned the key.
+   * If `false`, it's not fallback to root.
    *
    * @VueI18nSee [Fallbacking](../../guide/essentials/fallback)
    *
@@ -411,7 +423,7 @@ export interface Composer<
   fallbackWarn: boolean | RegExp
   /**
    * @remarks
-   * Whether to fall back to root level (global) localization when localization fails.
+   * Whether to fall back to root level (global scope) localization when localization fails.
    *
    * @VueI18nSee [Fallbacking](../../guide/essentials/fallback)
    */
@@ -762,6 +774,12 @@ export interface Composer<
    * @remarks
    * If [UseI18nScope](general#usei18nscope) `'local'` or Some [UseI18nOptions](composition#usei18noptions) are specified at `useI18n`, it’s translated in preferentially local scope locale messages than global scope locale messages.
    *
+   * Based on the current `locale`, locale messages will be returned from Composer instance messages.
+   *
+   * If you change the `locale`, the locale messages returned will also correspond to the locale.
+   *
+   * If there are no locale messages for the given `key` in the composer instance messages, they will be returned with [fallbacking](../../guide/essentials/fallback).
+   *
    * @param key - A target locale message key
    *
    * @return Locale messages
@@ -934,6 +952,7 @@ function defineCoreMissingHandler<Message = VueMessageType>(
 type GetLocaleMessagesOptions<Message = VueMessageType> = {
   messages?: LocaleMessages<Message>
   __i18n?: CustomBlocks<Message>
+  flatJson?: boolean
 }
 
 export function getLocaleMessages<Message = VueMessageType>(
@@ -961,13 +980,16 @@ export function getLocaleMessages<Message = VueMessageType>(
     })
   }
 
-  return ret
-}
+  // handle messages for flat json
+  if (options.flatJson) {
+    for (const key in ret) {
+      if (hasOwn(ret, key)) {
+        handleFlatJson(ret[key])
+      }
+    }
+  }
 
-const hasOwnProperty = Object.prototype.hasOwnProperty
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function hasOwn(obj: object | Array<any>, key: string): boolean {
-  return hasOwnProperty.call(obj, key)
+  return ret
 }
 
 const isNotObjectOrIsArray = (val: unknown) => !isObject(val) || isArray(val)
@@ -1239,7 +1261,11 @@ export function createComposer<
     if (isNumber(ret) && ret === NOT_REOSLVED) {
       const key = argumentParser()
       if (__DEV__ && __root) {
-        if (!_fallbackRoot) {
+        if (
+          _fallbackRoot &&
+          (isTranslateFallbackWarn(_fallbackWarn, key) ||
+            isTranslateMissingWarn(_missingWarn, key))
+        ) {
           warn(
             getWarnMessage(I18nWarnCodes.FALLBACK_TO_ROOT, {
               key,
@@ -1252,7 +1278,7 @@ export function createComposer<
           const {
             __emitter: emitter
           } = (context as unknown) as CoreInternalContext
-          if (emitter) {
+          if (emitter && _fallbackRoot) {
             emitter.emit(DevToolsTimelineEvents.FALBACK, {
               type: warnType,
               key,
@@ -1399,13 +1425,31 @@ export function createComposer<
     return resolveValue(message, key) !== null
   }
 
+  function __resolveMessages(key: Path): LocaleMessageValue<Message> | null {
+    const context = getCoreContext()
+    let messages: LocaleMessageValue<Message> | null = null
+    const locales = getLocaleChain<Message>(
+      context,
+      _fallbackLocale.value,
+      _locale.value
+    )
+    for (let i = 0; i < locales.length; i++) {
+      const targetLocaleMessages = _messages.value[locales[i]] || {}
+      const messageValue = resolveValue(targetLocaleMessages, key)
+      if (messageValue != null) {
+        messages = messageValue as LocaleMessageValue<Message>
+        break
+      }
+    }
+    return messages
+  }
+
   // tm
   function tm(key: Path): LocaleMessageValue<Message> | {} {
-    const messages = _messages.value[_locale.value] || {}
-    const target = resolveValue(messages, key)
+    const messages = __resolveMessages(key)
     // prettier-ignore
-    return target != null
-      ? target as LocaleMessageValue<Message>
+    return messages != null
+      ? messages
       : __root
         ? __root.tm(key) as LocaleMessageValue<Message> || {}
         : {}

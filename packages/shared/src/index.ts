@@ -87,6 +87,8 @@ export function warn(msg: string, err?: Error): void {
   }
 }
 
+export const assign = Object.assign
+
 let _globalThis: any
 export const getGlobalThis = (): any => {
   // prettier-ignore
@@ -111,6 +113,11 @@ export function escapeHtml(rawText: string): string {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;')
+}
+
+const hasOwnProperty = Object.prototype.hasOwnProperty
+export function hasOwn(obj: object | Array<any>, key: string): boolean {
+  return hasOwnProperty.call(obj, key)
 }
 
 /* eslint-enable */

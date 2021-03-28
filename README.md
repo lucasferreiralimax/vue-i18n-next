@@ -4,21 +4,22 @@
 
 Internationalization plugin for Vue.js
 
-<h3 align="center">🥇 Gold Sponsors<h3>
+<h2 align="center">Supporting Vue I18n & Intlify Project</h2>
+
+Vue I18n is part of the Vue Ecosystem and Intlify Project is an open source project with its ongoing development made possible entirely by the support of Sponsors. If you would like to become a sponsor, please consider:
+
+- [Become a Sponsor on GitHub](https://github.com/sponsors/kazupon)
+
+<h3 align="center">🥇 Gold Sponsors</h3>
 
 <p align="center">
   <a
     href="https://nuxtjs.org/"
-    style="margin: 1rem 1rem 0 1rem; width: 15rem; height: auto; display: inline-block; vertical-align: middle;"
-    target="_blank"
-    rel="noopener"
-  >
+    target="_blank">
     <img
-      style="max-width: 100%; vertical-align: midele;"
       src="https://raw.githubusercontent.com/intlify/vue-i18n-next/master/docs/public/nuxt.png"
-      width="260px"
-      alt="Nuxt.js"
-    >
+      width="240px"
+    />
   </a>
 </p>
 
@@ -26,73 +27,61 @@ Internationalization plugin for Vue.js
 
 <p align="center">
   <a
-    href="https://www.codeandweb.com/babeledit?utm_campaign=vue-i18n-2019-01"
-    style="margin: 1rem 1rem 0 1rem; width: 12rem; height: auto; display: inline-block; vertical-align: middle;"
-    target="_blank"
-    rel="noopener"
-  >
+    href="https://www.codeandweb.com/babeledit?utm_campaign=vue-i18n-2019-01" 
+    target="_blank">
     <img
-      style="max-width: 100%; vertical-align: midele;"
-      src="https://raw.githubusercontent.com/intlify/vue-i18n-next/master/docs/public/babeledit.png"
+      src="https://secure.codeandweb.com/static/babeledit.svg"
       width="200px"
-      alt="Babel Edit"
-    >
+    />
   </a>
 </p>
 
 <h3 align="center">🥉 Bronze Sponsors</h3>
 
 <p align="center">
-  <a
-    href="https://zenarchitects.co.jp/"
-    style="margin: 1rem 1rem 0 1rem; width: 9rem; height: auto; display: inline-block; vertical-align: middle;"
-    target="_blank"
-    rel="noopener"
-  >
+  <a href="https://zenarchitects.co.jp/" target="_blank">
     <img
-      style="max-width: 100%; vertical-align: midele;"
       src="https://raw.githubusercontent.com/intlify/vue-i18n-next/master/docs/public/zenarchitects.png"
-      width="140px"
-      alt="Zen Architects"
-    >
+      width="144px"
+    />
   </a>
 </p>
 <p align="center">
-  <a
-    href="https://www.sendcloud.com/"
-    style="margin: 1rem 1rem 0 1rem; width: 9rem; height: auto; display: inline-block; vertical-align: middle;"
-    target="_blank"
-    rel="noopener"
-  >
+  <a href="https://www.sendcloud.com/" target="_blank">
     <img
-      style="max-width: 100%; vertical-align: midele;"
       src="https://raw.githubusercontent.com/intlify/vue-i18n-next/master/docs/public/sendcloud.png"
-      width="140px"
-      alt="Send Cloud"
-    >
+      width="144px"
+    />
   </a>
 </p>
 <p align="center">
-  <a
-    href="https://www.vuemastery.com/"
-    style="margin: 1rem 1rem 0 1rem; width: 9rem; height: auto; display: inline-block; vertical-align: middle;"
-    target="_blank"
-    rel="noopener"
-  >
+  <a href="https://www.vuemastery.com/" target="_blank">
     <img
-      style="max-width: 100%; vertical-align: midele;"
       src="https://raw.githubusercontent.com/intlify/vue-i18n-next/master/docs/public/vuemastery.png"
-      width="140px"
-      alt="Vue Mastery"
-    >
+      width="144px"
+    />
   </a>
 </p>
 
+<br/>
 
 ## Status: ![Test](https://github.com/intlify/vue-i18n-next/workflows/Test/badge.svg)
 
 - [Documentation](https://vue-i18n.intlify.dev/)
 - If you use Vue I18n v8, see this [repository](https://github.com/kazupon/vue-i18n)
+
+## Quickstart
+
+- Via CDN: `<script src="https://unpkg.com/vue-i18n@next"></script>`
+- In-browser playground on [CodeSandbox](https://codesandbox.io/s/vue-i18n-9-template-h28c0)
+- Add it to an existing Vue Project:
+  ```bash
+  npm install vue-i18n@next
+  ```
+
+## Changes from Vue I18n v8
+
+Please consult the [Migration Guide](https://vue-i18n.intlify.dev/guide/migration/breaking.html).
 
 ## :raising_hand: About support for v9 and earlier
 - v6 and earlier: drop supporting
@@ -114,19 +103,19 @@ The examples are offered in the following two API styles:
 
 | Package | NPM |
 | ------- | --- |
-| [vue-i18n](packages/vue-i18n) | [![vue-i18n](https://img.shields.io/npm/v/vue-i18n/rc.svg)](https://www.npmjs.com/package/vue-i18n)
-| [@intlify/core](packages/core) | [![@intlify/core](https://img.shields.io/npm/v/@intlify/core/rc.svg)](https://www.npmjs.com/package/@intlify/core)
-| [@intlify/core-base](packages/core-base) | [![@intlify/core-base](https://img.shields.io/npm/v/@intlify/core-base/rc.svg)](https://www.npmjs.com/package/@intlify/core-base)
-| [@intlify/runtime](packages/runtime) | [![@intlify/runtime](https://img.shields.io/npm/v/@intlify/runtime/rc.svg)](https://www.npmjs.com/package/@intlify/runtime)
-| [@intlify/message-compiler](packages/message-compiler) | [![@intlify/message-compiler](https://img.shields.io/npm/v/@intlify/message-compiler/rc.svg)](https://www.npmjs.com/package/@intlify/message-compiler)
-| [@intlify/message-resolver](packages/message-resolver) | [![@intlify/message-resolver](https://img.shields.io/npm/v/@intlify/message-resolver/rc.svg)](https://www.npmjs.com/package/@intlify/message-resolver)
-| [@intlify/shared](packages/shared) | [![@intlify/shared](https://img.shields.io/npm/v/@intlify/shared/rc.svg)](https://www.npmjs.com/package/@intlify/shared)
+| [vue-i18n](packages/vue-i18n) | [![vue-i18n](https://img.shields.io/npm/v/vue-i18n/next.svg)](https://www.npmjs.com/package/vue-i18n)
+| [@intlify/core](packages/core) | [![@intlify/core](https://img.shields.io/npm/v/@intlify/core/next.svg)](https://www.npmjs.com/package/@intlify/core)
+| [@intlify/core-base](packages/core-base) | [![@intlify/core-base](https://img.shields.io/npm/v/@intlify/core-base.svg)](https://www.npmjs.com/package/@intlify/core-base)
+| [@intlify/runtime](packages/runtime) | [![@intlify/runtime](https://img.shields.io/npm/v/@intlify/runtime.svg)](https://www.npmjs.com/package/@intlify/runtime)
+| [@intlify/message-compiler](packages/message-compiler) | [![@intlify/message-compiler](https://img.shields.io/npm/v/@intlify/message-compiler.svg)](https://www.npmjs.com/package/@intlify/message-compiler)
+| [@intlify/message-resolver](packages/message-resolver) | [![@intlify/message-resolver](https://img.shields.io/npm/v/@intlify/message-resolver.svg)](https://www.npmjs.com/package/@intlify/message-resolver)
+| [@intlify/shared](packages/shared) | [![@intlify/shared](https://img.shields.io/npm/v/@intlify/shared.svg)](https://www.npmjs.com/package/@intlify/shared)
 
 ## :runner: Other Projects
 
 | Project | NPM | Repo |
 | ------- | --- | ---- |
-| Vue CLI Plugin | [![vue-cli-plugin-i18n](https://img.shields.io/npm/v/vue-cli-plugin-i18n/next.svg)](https://www.npmjs.com/package/vue-cli-plugin-i18n) | [intlify/vue-cli-plugin-i18n](https://github.com/intlify/vue-cli-plugin-i18n)
+| Vue CLI Plugin | [![vue-cli-plugin-i18n](https://img.shields.io/npm/v/vue-cli-plugin-i18n.svg)](https://www.npmjs.com/package/vue-cli-plugin-i18n) | [intlify/vue-cli-plugin-i18n](https://github.com/intlify/vue-cli-plugin-i18n)
 | Vue I18n Extensions | [![@intlify/vue-i18n-extensions](https://img.shields.io/npm/v/@intlify/vue-i18n-extensions/next.svg)](https://www.npmjs.com/package/@intlify/vue-i18n-extensions) | [intlify/vue-i18n-extentions](https://github.com/intlify/vue-i18n-extensions)
 | ESLint Plugin | [![@intlify/eslint-plugin-vue-i18n](https://img.shields.io/npm/v/@intlify/eslint-plugin-vue-i18n.svg)](https://www.npmjs.com/package/@intlify/eslint-plugin-vue-i18n) | [intlify/eslint-plugin-vue-i18n](https://github.com/intlify/eslint-plugin-vue-i18n)
 | Composition API for Vue 2.x | [![vue-i18n-composable](https://img.shields.io/npm/v/vue-i18n-composable.svg)](https://www.npmjs.com/package/vue-i18n-composable) | [intlify/vue-i18n-composable](https://github.com/intlify/vue-i18n-composable)

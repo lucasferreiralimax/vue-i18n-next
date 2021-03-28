@@ -89,7 +89,7 @@ export interface VueI18nOptions {
    *
    * @VueI18nSee [Fallbacking](../../guide/essentials/fallback)
    *
-   * @defaultValue `true`
+   * @defaultValue The default `'en-US'` for the `locale` if it's not specified, or it's `locale` value
    */
   fallbackLocale?: FallbackLocale
   /**
@@ -101,6 +101,13 @@ export interface VueI18nOptions {
    * @defaultValue `{}`
    */
   messages?: LocaleMessages<VueMessageType>
+  /**
+   * @remarks
+   * Allow use flat json messages or not
+   *
+   * @defaultValue `false`
+   */
+  flatJson?: boolean
   /**
    * @remarks
    * The datetime formats of localization.
@@ -153,9 +160,9 @@ export interface VueI18nOptions {
   missing?: MissingHandler
   /**
    * @remarks
-   * In the component localization, whether to fall back to root level (global) localization when localization fails.
+   * In the component localization, whether to fall back to root level (global scope) localization when localization fails.
    *
-   * If `false`, it's warned, and is returned the key.
+   * If `false`, it's not fallback to root.
    *
    * @VueI18nSee [Fallbacking](../../guide/essentials/fallback)
    *
@@ -653,6 +660,12 @@ export interface VueI18n<
    *
    * If [i18n component options](injection#i18n) isn't specified, it’s get with global scope locale messages.
    *
+   * Based on the current `locale`, locale messages will be returned from Composer instance messages.
+   *
+   * If you change the `locale`, the locale messages returned will also correspond to the locale.
+   *
+   * If there are no locale messages for the given `key` in the composer instance messages, they will be returned with [fallbacking](../../guide/essentials/fallback).
+   *
    * @param key - A target locale message key
    *
    * @return Locale messages
@@ -964,11 +977,13 @@ function convertComposerOptions<
 
   const datetimeFormats = options.datetimeFormats
   const numberFormats = options.numberFormats
+  const flatJson = options.flatJson
 
   return {
     locale,
     fallbackLocale,
     messages,
+    flatJson,
     datetimeFormats,
     numberFormats,
     missing,

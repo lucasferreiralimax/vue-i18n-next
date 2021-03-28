@@ -1,7 +1,6 @@
 import {
   setupDevtoolsPlugin,
   Hooks,
-  AppRecord,
   ComponentTreeNode
 } from '@vue/devtools-api'
 import {
@@ -11,7 +10,13 @@ import {
   DevToolsPlaceholders,
   DevToolsTimelineEvents
 } from '@intlify/core-base'
-import { isFunction, isObject } from '@intlify/shared'
+import {
+  isFunction,
+  isString,
+  isBoolean,
+  isObject,
+  isArray
+} from '@intlify/shared'
 
 import type { App } from 'vue'
 import type {
@@ -33,6 +38,8 @@ type _I18n<
   Legacy extends boolean
 > = I18n<Messages, DateTimeFormats, NumberFormats, Legacy> & I18nInternal
 
+const VUE_I18N_COMPONENT_TYPES = 'vue-i18n: composer properties'
+
 let devtoolsApi: DevtoolsPluginApi
 
 export async function enableDevTools<
@@ -50,25 +57,21 @@ export async function enableDevTools<
         {
           id: DevToolsIDs.PLUGIN,
           label: DevToolsLabels[DevToolsIDs.PLUGIN],
+          packageName: 'vue-i18n',
+          homepage: 'https://vue-i18n.intlify.dev',
+          logo: 'https://vue-i18n.intlify.dev/vue-i18n-devtools-logo.png',
+          componentStateTypes: [VUE_I18N_COMPONENT_TYPES],
           app
         },
         api => {
           devtoolsApi = api
 
-          api.on.walkComponentTree((payload, ctx) => {
-            updateComponentTreeDataTags(
-              ctx.currentAppRecord,
-              payload.componentTreeData,
-              i18n
-            )
+          api.on.visitComponentTree(({ componentInstance, treeNode }) => {
+            updateComponentTreeTags(componentInstance, treeNode, i18n)
           })
 
-          api.on.inspectComponent(payload => {
-            const componentInstance = payload.componentInstance
-            if (
-              componentInstance.vnode.el.__INTLIFY__ &&
-              payload.instanceData
-            ) {
+          api.on.inspectComponent(({ componentInstance, instanceData }) => {
+            if (componentInstance.vnode.el.__INTLIFY__ && instanceData) {
               if (i18n.mode === 'legacy') {
                 // ignore global scope on legacy mode
                 if (
@@ -76,13 +79,13 @@ export async function enableDevTools<
                   ((i18n.global as unknown) as VueI18nInternal).__composer
                 ) {
                   inspectComposer(
-                    payload.instanceData,
+                    instanceData,
                     componentInstance.vnode.el.__INTLIFY__ as Composer
                   )
                 }
               } else {
                 inspectComposer(
-                  payload.instanceData,
+                  instanceData,
                   componentInstance.vnode.el.__INTLIFY__ as Composer
                 )
               }
@@ -115,6 +118,15 @@ export async function enableDevTools<
             }
           })
 
+          api.on.editInspectorState(payload => {
+            if (
+              payload.app === app &&
+              payload.inspectorId === DevToolsIDs.CUSTOM_INSPECTOR
+            ) {
+              editScope(payload, i18n)
+            }
+          })
+
           api.addTimelineLayer({
             id: DevToolsIDs.TIMELINE,
             label: DevToolsLabels[DevToolsIDs.TIMELINE],
@@ -131,38 +143,32 @@ export async function enableDevTools<
   })
 }
 
-function updateComponentTreeDataTags<
+function updateComponentTreeTags<
   Messages,
   DateTimeFormats,
   NumberFormats,
   Legacy extends boolean
 >(
-  appRecord: AppRecord,
-  treeData: ComponentTreeNode[],
+  instance: any, // eslint-disable-line @typescript-eslint/no-explicit-any
+  treeNode: ComponentTreeNode,
   i18n: _I18n<Messages, DateTimeFormats, NumberFormats, Legacy>
 ): void {
   // prettier-ignore
   const global = i18n.mode === 'composition'
     ? i18n.global
     : (i18n.global as unknown as VueI18nInternal).__composer
-  for (const node of treeData) {
-    const instance = appRecord.instanceMap.get(node.id)
-    if (instance && instance.vnode.el.__INTLIFY__) {
-      // add custom tags local scope only
-      if (instance.vnode.el.__INTLIFY__ !== global) {
-        const label =
-          instance.type.name ||
-          instance.type.displayName ||
-          instance.type.__file
-        const tag = {
-          label: `i18n (${label} Scope)`,
-          textColor: 0x000000,
-          backgroundColor: 0xffcd19
-        }
-        node.tags.push(tag)
+  if (instance && instance.vnode.el.__INTLIFY__) {
+    // add custom tags local scope only
+    if (instance.vnode.el.__INTLIFY__ !== global) {
+      const label =
+        instance.type.name || instance.type.displayName || instance.type.__file
+      const tag = {
+        label: `i18n (${label} Scope)`,
+        textColor: 0x000000,
+        backgroundColor: 0xffcd19
       }
+      treeNode.tags.push(tag)
     }
-    updateComponentTreeDataTags(appRecord, node.children, i18n)
   }
 }
 
@@ -170,11 +176,11 @@ function inspectComposer(
   instanceData: InspectedComponentData,
   composer: Composer
 ): void {
-  const type = 'vue-i18n: composer properties'
+  const type = VUE_I18N_COMPONENT_TYPES
   instanceData.state.push({
     type,
     key: 'locale',
-    editable: false,
+    editable: true,
     value: composer.locale.value
   })
   instanceData.state.push({
@@ -186,13 +192,13 @@ function inspectComposer(
   instanceData.state.push({
     type,
     key: 'fallbackLocale',
-    editable: false,
+    editable: true,
     value: composer.fallbackLocale.value
   })
   instanceData.state.push({
     type,
     key: 'inheritLocale',
-    editable: false,
+    editable: true,
     value: composer.inheritLocale
   })
   instanceData.state.push({
@@ -293,6 +299,41 @@ function registerScope<
   }
 }
 
+function getComposer<
+  Messages,
+  DateTimeFormats,
+  NumberFormats,
+  Legacy extends boolean
+>(
+  nodeId: string,
+  i18n: _I18n<Messages, DateTimeFormats, NumberFormats, Legacy>
+): Composer<Messages, DateTimeFormats, NumberFormats> | null {
+  if (nodeId === 'global') {
+    return i18n.mode === 'composition'
+      ? (i18n.global as Composer<Messages, DateTimeFormats, NumberFormats>)
+      : ((i18n.global as unknown) as VueI18nInternal<
+          Messages,
+          DateTimeFormats,
+          NumberFormats
+        >).__composer
+  } else {
+    const instance = Array.from(i18n.__instances.values()).find(
+      item => item.id.toString() === nodeId
+    )
+    if (instance) {
+      return i18n.mode === 'composition'
+        ? (instance as Composer<Messages, DateTimeFormats, NumberFormats>)
+        : ((instance as unknown) as VueI18nInternal<
+            Messages,
+            DateTimeFormats,
+            NumberFormats
+          >).__composer
+    } else {
+      return null
+    }
+  }
+}
+
 function inspectScope<
   Messages,
   DateTimeFormats,
@@ -302,23 +343,9 @@ function inspectScope<
   payload: HookPayloads[Hooks.GET_INSPECTOR_STATE],
   i18n: _I18n<Messages, DateTimeFormats, NumberFormats, Legacy>
 ): void {
-  if (payload.nodeId === 'global') {
-    payload.state = makeScopeInspectState(
-      i18n.mode === 'composition'
-        ? (i18n.global as Composer)
-        : ((i18n.global as unknown) as VueI18nInternal).__composer
-    )
-  } else {
-    const instance = Array.from(i18n.__instances.values()).find(
-      item => item.id.toString() === payload.nodeId
-    )
-    if (instance) {
-      const composer =
-        i18n.mode === 'composition'
-          ? (instance as Composer)
-          : ((instance as unknown) as VueI18nInternal).__composer
-      payload.state = makeScopeInspectState(composer)
-    }
+  const composer = getComposer(payload.nodeId, i18n)
+  if (composer) {
+    payload.state = makeScopeInspectState(composer)
   }
 }
 
@@ -330,13 +357,13 @@ function makeScopeInspectState(composer: Composer): CustomInspectorState {
     {
       type: localeType,
       key: 'locale',
-      editable: false,
+      editable: true,
       value: composer.locale.value
     },
     {
       type: localeType,
       key: 'fallbackLocale',
-      editable: false,
+      editable: true,
       value: composer.fallbackLocale.value
     },
     {
@@ -348,7 +375,7 @@ function makeScopeInspectState(composer: Composer): CustomInspectorState {
     {
       type: localeType,
       key: 'inheritLocale',
-      editable: false,
+      editable: true,
       value: composer.inheritLocale
     }
   ]
@@ -417,5 +444,32 @@ export function addTimelineEvent(
             : 'default'
       }
     })
+  }
+}
+
+function editScope<
+  Messages,
+  DateTimeFormats,
+  NumberFormats,
+  Legacy extends boolean
+>(
+  payload: HookPayloads[Hooks.EDIT_INSPECTOR_STATE],
+  i18n: _I18n<Messages, DateTimeFormats, NumberFormats, Legacy>
+): void {
+  const composer = getComposer(payload.nodeId, i18n)
+  if (composer) {
+    const [field] = payload.path
+    if (field === 'locale' && isString(payload.state.value)) {
+      composer.locale.value = payload.state.value
+    } else if (
+      field === 'fallbackLocale' &&
+      (isString(payload.state.value) ||
+        isArray(payload.state.value) ||
+        isObject(payload.state.value))
+    ) {
+      composer.fallbackLocale.value = payload.state.value
+    } else if (field === 'inheritLocale' && isBoolean(payload.state.value)) {
+      composer.inheritLocale = payload.state.value
+    }
   }
 }
